@@ -16,12 +16,14 @@ type DB struct {
 
 type Config struct {
 	Environment string
+	DockerContainer string
 
 	SourceDB DB
 	TargetDB DB
 
 	HasSource bool
 	HasTarget bool
+	UsingDocker bool
 }
 
 func init() {}
@@ -72,10 +74,16 @@ func loadConfig() (*Config, error) {
 
 	config := &Config{
 		Environment: viper.GetString("ENVIRONMENT"),
+		DockerContainer: viper.GetString("DOCKER_CONTAINER_NAME"),
 		SourceDB: *sourceDB,
 		TargetDB: *targetDB,
 		HasSource: hasSourceDB,
 		HasTarget: hasTargetDB,
+		UsingDocker: false,
+	}
+
+	if config.DockerContainer != "" {
+		config.UsingDocker = true
 	}
 
 	return config, nil
@@ -83,20 +91,28 @@ func loadConfig() (*Config, error) {
 
 func LogConfig(config *Config) {
 	fmt.Println("================================================")
-	fmt.Printf(" ENVIRONMENT    	: %s\n", config.Environment)
+	fmt.Printf(" ENVIRONMENT    : %s\n", config.Environment)
+
+	if config.UsingDocker {
+		fmt.Printf(" CONTAINER    	: %s\n", config.DockerContainer)
+	}
+
 	if config.HasSource {
-		fmt.Printf(" SOURCE HOST        : %s:%s\n", config.TargetDB.Host, config.TargetDB.Port)
-		fmt.Printf(" SOURCE Name        : %s\n", config.TargetDB.Name)
-		fmt.Printf(" SOURCE User        : %s\n", config.TargetDB.Username)
+		fmt.Printf("[SOURCE] Host	: %s:%s\n", config.SourceDB.Host, config.SourceDB.Port)
+		fmt.Printf("[SOURCE] Name	: %s\n", config.SourceDB.Name)
+		fmt.Printf("[SOURCE] User	: %s\n", config.SourceDB.Username)
 	}
+
 	if config.HasTarget {
-		fmt.Printf(" TARGET HOST        : %s:%s\n", config.TargetDB.Host, config.TargetDB.Port)
-		fmt.Printf(" TARGET Name        : %s\n", config.TargetDB.Name)
-		fmt.Printf(" TARGET User        : %s\n", config.TargetDB.Username)
+		fmt.Printf("[TARGET] Host	: %s:%s\n", config.TargetDB.Host, config.TargetDB.Port)
+		fmt.Printf("[TARGET] Name	: %s\n", config.TargetDB.Name)
+		fmt.Printf("[TARGET] User	: %s\n", config.TargetDB.Username)
 	}
+
 	if !config.HasSource && !config.HasTarget {
 		fmt.Println(" No TARGET or SOURCE DB Provided!")
 	}
+
 	fmt.Println("================================================")
 }
 
