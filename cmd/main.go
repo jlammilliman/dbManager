@@ -4,9 +4,10 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/jlammilliman/dbManager/pkg/setup"
 	"github.com/jlammilliman/dbManager/pkg/config"
 	"github.com/jlammilliman/dbManager/pkg/logger"
+	"github.com/jlammilliman/dbManager/pkg/seed"
+	"github.com/jlammilliman/dbManager/pkg/setup"
 )
 
 func main() {
@@ -17,12 +18,11 @@ func main() {
 	config.LogConfig(conf)
 
 	// Configuration options
-	force := false			// -- force 	| -f 	--> Warnings default terminate. This enables a pass-through
-	runSetup := false		// -- setup 	| -up	--> Tells us to generate a DB from the schema provided onto target
-	runGeneration := false 	// -- generate 	| -g	--> Tells us to generate a schema from source DB
-	runVerification := false// -- verify	| -v	--> Checks local database schema against source DB
-	runSeed := false		// -- seed		| -s	--> Tells us to generate seed data 
-
+	force := false           // -- force 	| -f 	--> Warnings default terminate. This enables a pass-through
+	runSetup := false        // -- setup 	| -up	--> Tells us to generate a DB from the schema provided onto target
+	runGeneration := false   // -- generate 	| -g	--> Tells us to generate a schema from source DB
+	runVerification := false // -- verify	| -v	--> Checks local database schema against source DB
+	runSeed := false         // -- seed		| -s	--> Tells us to generate seed data
 
 	// Check for --force flag
 	for _, arg := range os.Args {
@@ -50,7 +50,6 @@ func main() {
 		}
 	}
 
-
 	if runGeneration {
 		if !conf.HasSource {
 			logger.Error("Cannot run generation without a provided source DB!")
@@ -72,15 +71,15 @@ func main() {
 			setup.Exec(conf, force)
 			logger.Info("Done.")
 		}
-		
+
 		if runVerification {
 			logger.Info(fmt.Sprintf("Running Verification for '%s'", conf.TargetDB.Name))
 			logger.Info("Not Implemented.")
 		}
-		
+
 		if runSeed {
 			logger.Info(fmt.Sprintf("Running Seed for '%s'", conf.TargetDB.Name))
-			logger.Info("Not Implemented.")
+			seed.Exec(conf, force)
 		}
 	}
 }

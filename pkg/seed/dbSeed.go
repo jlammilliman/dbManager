@@ -3,11 +3,9 @@ package seed
 import (
 	"database/sql"
 	"fmt"
-	"log"
 
-	"RoadConductor.API/pkg/config"
-	strategy "RoadConductor.API/scripts/local-db-seed/strategies"
 	_ "github.com/denisenkom/go-mssqldb"
+	"github.com/jlammilliman/dbManager/pkg/config"
 )
 
 // This list will be used to filter out any tables that we absolutely do not want to seed
@@ -17,17 +15,12 @@ var BlockedFromSeeding []string = []string{
 }
 
 // DRIVER LOGIC OF THE SCRIPT
-func main() {
-	config, err := config.LoadConfig()
-	if err != nil {
-		log.Fatalf("Error loading config %v", err)
-	}
-
-	server := config.DB.Host
-	port := config.DB.Port
-	database := config.DB.Name
-	username := config.DB.Username
-	password := config.DB.Password
+func Exec(config *config.Config, forceRefresh bool) {
+	server := config.SourceDB.Host
+	port := config.SourceDB.Port
+	database := config.SourceDB.Name
+	username := config.SourceDB.Username
+	password := config.SourceDB.Password
 
 	isDBConnected := isSQLServerContainerReady(server, port, username, password)
 	if !isDBConnected {
@@ -60,12 +53,12 @@ func main() {
 
 		// We can handle specific tablenames, types, and whatever logic we want to dynamically seed data in here.
 		// If you can manually specify a seeding strategy by adding an if(tableName == 'SomeTable')
-		// If a manual strategy is not supplied, it will follow the default strategy.
+		// If a manual strategy is not supplied, it will follow the default
 
 		if table.TableName == "Users" {
-			fmt.Println("TODO: Implement user strategy.")
+			fmt.Println("TODO: Implement user ")
 		} else {
-			err := strategy.CallGeneralStrategy(db, table) // Default to seed method
+			err := CallGeneralStrategy(db, table) // Default to seed method
 			if err != nil {
 				fmt.Printf("Time to cry, seeding failed: %v\n", err)
 			}
@@ -89,7 +82,7 @@ func isSQLServerContainerReady(server, port, username, password string) bool {
 }
 
 // Query to get all tables and their columns, contraints
-func getTables(db *sql.DB, database string) ([]strategy.TableDetails, error) {
+func getTables(db *sql.DB, database string) ([]TableDetails, error) {
 
 	// Try not to touch too much. This bad boi is a monolithic query
 	query := `
@@ -139,7 +132,7 @@ func getTables(db *sql.DB, database string) ([]strategy.TableDetails, error) {
 	defer rows.Close()
 
 	// Pull results into something we can actually use
-	tablesMap := make(map[string]*strategy.TableDetails)
+	tablesMap := make(map[string]*TableDetails)
 	for rows.Next() {
 		var (
 			tableName        string
@@ -155,10 +148,10 @@ func getTables(db *sql.DB, database string) ([]strategy.TableDetails, error) {
 		}
 
 		if _, exists := tablesMap[tableName]; !exists {
-			tablesMap[tableName] = &strategy.TableDetails{TableName: tableName}
+			tablesMap[tableName] = &TableDetails{TableName: tableName}
 		}
 
-		column := strategy.ColumnDetails{
+		column := ColumnDetails{
 			Name:             columnName,
 			Type:             dataType,
 			IsPrimaryKey:     isPrimaryKeyStr == "YES",
@@ -170,7 +163,7 @@ func getTables(db *sql.DB, database string) ([]strategy.TableDetails, error) {
 	}
 
 	// Recast to new object to avoid any overlapping/dead data. --> Old array gets garbage collected
-	var tables []strategy.TableDetails
+	var tables []TableDetails
 	for _, table := range tablesMap {
 		tables = append(tables, *table)
 	}
@@ -234,7 +227,7 @@ func stringInSlice(a string, list []string) bool {
 }
 
 // Creates a graph of table dependencies, and returns an ordered list in which it is safe to seed tables
-func sortTables(tables []strategy.TableDetails) ([]strategy.TableDetails, error) {
+func sortTables(tables []TableDetails) ([]TableDetails, error) {
 	graph := make(map[string][]string)
 
 	for _, table := range tables {
@@ -252,7 +245,7 @@ func sortTables(tables []strategy.TableDetails) ([]strategy.TableDetails, error)
 	}
 
 	// Create sorted tableDetails array
-	var sortedTables []strategy.TableDetails
+	var sortedTables []TableDetails
 	for _, tableName := range order {
 		for _, table := range tables {
 			if table.TableName == tableName {
