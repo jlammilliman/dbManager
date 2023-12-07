@@ -70,6 +70,7 @@ func main() {
 		if runSetup {
 			logger.Info(fmt.Sprintf("Running Setup for '%s'", conf.TargetDB.Name))
 			setup.Exec(conf, force)
+			logger.Info("Done.")
 		}
 		
 		if runVerification {

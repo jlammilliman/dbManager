@@ -4,14 +4,12 @@ import (
 	"database/sql"
 	"fmt"
 
+	_ "github.com/denisenkom/go-mssqldb"
 	"github.com/jlammilliman/dbManager/pkg/config"
 	"github.com/jlammilliman/dbManager/pkg/logger"
-	_ "github.com/denisenkom/go-mssqldb"
 )
 
-
 // This handles the generation of a local sourceDatabase schema given a source sourceDatabase
-
 
 // This list will be used to filter out any tables that we absolutely do not want to seed
 var BlockedFromSeeding []string = []string{
@@ -73,7 +71,7 @@ func Generate(config *config.Config, forceRefresh bool) {
 	// Call topography (returns a sorted priority seed list)
 	sortedTables, err := sortTables(tables)
 	if err != nil {
-		logger.Error(fmt.Sprintf("Error Soring: %v\n", err))
+		logger.Error(fmt.Sprintf("Error Sorting: %v\n", err))
 		return
 	}
 
@@ -82,6 +80,41 @@ func Generate(config *config.Config, forceRefresh bool) {
 	for _, table := range sortedTables {
 		logger.Debug(fmt.Sprintf("Table: %s", table.TableName))
 	}
+}
+
+func getSchema(db *sql.DB, sourceDatabase string) ([]TableDetails, error) {
+
+	query := `
+		SELECT 
+			CASE 
+				WHEN o.type = 'P' THEN 'Procedure'
+				WHEN o.type = 'FN' THEN 'Function'
+				WHEN o.type = 'V' THEN 'View'
+			END AS ObjectType,
+			s.name AS SchemaName,
+			o.name AS ObjectName,
+			re.referenced_entity_name,
+			re.referenced_minor_name,
+			CASE 
+				WHEN re.referenced_minor_id = 0 THEN 'Object'
+				ELSE 'Column'
+			END AS ReferencedType
+		FROM 
+			sys.objects o
+			INNER JOIN sys.schemas s ON o.schema_id = s.schema_id
+			INNER JOIN sys.sql_modules m ON o.object_id = m.object_id
+			CROSS APPLY sys.dm_sql_referenced_entities(s.name + '.' + o.name, 'OBJECT') re
+		WHERE 
+			o.type IN ('P', 'FN', 'V')
+	;`
+
+	rows, err := db.Query(query)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	return nil, nil
 }
 
 // Query to get all tables and their columns, contraints
@@ -243,7 +276,6 @@ func sortTables(tables []TableDetails) ([]TableDetails, error) {
 		}
 	}
 
-	// Topological Sort
 	order, err := topologicalSort(graph)
 	if err != nil {
 		return nil, err
