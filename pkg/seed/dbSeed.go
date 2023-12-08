@@ -177,7 +177,9 @@ func getTables(db *sql.DB, database string) ([]TableDetails, error) {
 	// Recast to new object to avoid any overlapping/dead data. --> Old array gets garbage collected
 	var tables []TableDetails
 	for _, table := range tablesMap {
-		tables = append(tables, *table)
+		if !stringInSlice(table.TableName, BlockedFromSeeding) {
+			tables = append(tables, *table)
+		}
 	}
 
 	logger.Info(fmt.Sprintf("Condensed tablesMap: %d to tables: %d", len(tablesMap), len(tables)))

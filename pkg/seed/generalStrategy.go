@@ -46,7 +46,7 @@ func CallGeneralStrategy(db *sql.DB, tableDetails TableDetails) error {
 
 		for _, col := range tableDetails.Columns {
 			// Exclude primary keys. Include primary keys that are foreign keys, include primary keys without an identity
-			if ((col.ReferencedTable == "" || col.ReferencedColumn == "" || col.ColumnDefault != "") && col.IsPrimaryKey) || col.Name == "createdAt" || col.Name == "updatedAt" {
+			if (col.ReferencedTable == "" || col.ReferencedColumn == "" || col.ColumnDefault != "") && col.IsPrimaryKey {
 				continue
 			}
 
