@@ -1,0 +1,110 @@
+================================================
+ ENVIRONMENT    : test
+ CONTAINER    	: roadconductor_db
+[SOURCE] Host	: 127.0.0.1:1433
+[SOURCE] Name	: sei_api_test
+[SOURCE] User	: sa
+[TARGET] Host	: 127.0.0.1:1433
+[TARGET] Name	: sei_api_test
+[TARGET] User	: sa
+================================================
+2023/12/08 10:45:50 [MESSAGE] Requested 'Seeding'.
+2023/12/08 10:45:50 [INFO] Running Seed for 'sei_api_test'
+2023/12/08 10:45:50 [INFO] Condensed tablesMap: 96 to tables: 96
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'SerserviceCallNotes': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'TimeZoneLookup': mssql: Cannot insert the value NULL into column 'TzlPkey', table 'sei_api_test.dbo.TimeZoneLookup'; column does not allow nulls. INSERT fails.
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'TicketCallMain': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'TicketCallMainMetadata': mssql: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_TicketCallMainMetadata_tcapkey". The conflict occurred in database "sei_api_test", table "dbo.TicketCallMain", column 'TcaPKey'.
+2023/12/08 10:45:50 [INFO] SEEDED: 'SerServiceCallRequest' 3 times.
+2023/12/08 10:45:50 [INFO] SEEDED: 'SerServiceCallRequestEmailLookup' 3 times.
+2023/12/08 10:45:50 [INFO] SEEDED: 'UserNotifications' 3 times.
+2023/12/08 10:45:50 [INFO] SEEDED: 'UserLogin' 3 times.
+2023/12/08 10:45:50 [INFO] SEEDED: 'CelPhoneList' 3 times.
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'EmpEmployeeMain': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'EmpEmployeeOutOfOffice': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:50 [INFO] SEEDED: 'SystemRoleUsers' 3 times.
+2023/12/08 10:45:50 [INFO] SEEDED: 'UserActivity' 3 times.
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'PublicTicketFormSubmissions': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:50 [INFO] SEEDED: 'AgreeStandardizationLookupManufacturer' 3 times.
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'ImpersonationSessions': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+TODO: Implement user 
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'UserVerification': mssql: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_UserVerification_Users". The conflict occurred in database "sei_api_test", table "dbo.Users", column 'id'.
+2023/12/08 10:45:50 [INFO] SEEDED: 'ActivityTypes' 3 times.
+2023/12/08 10:45:50 [INFO] SEEDED: 'Privileges' 3 times.
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'ImpersonationActivities': mssql: String or binary data would be truncated.
+2023/12/08 10:45:50 [INFO] SEEDED: 'UserLoginLockout' 3 times.
+2023/12/08 10:45:50 [INFO] SEEDED: 'LocationAuditEquipment' 3 times.
+2023/12/08 10:45:50 [INFO] SEEDED: 'InventDOALookupReason' 3 times.
+2023/12/08 10:45:50 [INFO] SEEDED: 'ForForumNotes' 3 times.
+2023/12/08 10:45:50 [INFO] SEEDED: 'PrivacyPolicy' 3 times.
+2023/12/08 10:45:50 [INFO] SEEDED: 'Roles' 3 times.
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'IV40700': mssql: String or binary data would be truncated.
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'AgreeAgreementMain': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'AgreeLocationMain': mssql: String or binary data would be truncated.
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'AgreeEquipmentMain': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'AgreeEquipmentDetailMain': mssql: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_AgreeEquipmentDetailMain_AgreeEquipmentMain". The conflict occurred in database "sei_api_test", table "dbo.AgreeEquipmentMain", column 'AeqPKey'.
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'AgreeEquipmentGeneration': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'Demos': mssql: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_Demos_Users". The conflict occurred in database "sei_api_test", table "dbo.Users", column 'id'.
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'TicketPartsMain': mssql: The INSERT statement conflicted with the FOREIGN KEY constraint "FK_TicketPartsMain_TicketCallMain". The conflict occurred in database "sei_api_test", table "dbo.TicketCallMain", column 'TcaPKey'.
+2023/12/08 10:45:50 [ERROR] SEEDING FAILED on 'UsrUserCompanyAgreementLink': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:50 [INFO] SEEDED: 'AgreementCriticalCareEmails' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'AgreeAgreementPartnershipDetail' 3 times.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'Sessions': mssql: Cannot insert the value NULL into column 'sid', table 'sei_api_test.dbo.Sessions'; column does not allow nulls. INSERT fails.
+2023/12/08 10:45:51 [INFO] SEEDED: 'UserEmployees' 3 times.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'AgreeDurationWorkflowApproval': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:51 [INFO] SEEDED: 'RegionMain' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'CompanyAgreements' 3 times.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'InventQuantities': mssql: Cannot insert the value NULL into column 'IqtPKey', table 'sei_api_test.dbo.InventQuantities'; column does not allow nulls. INSERT fails.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'DmsDocumentFile': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:51 [INFO] SEEDED: 'InventUnusedLocations' 3 times.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'AddEquipmentRequestInfo': mssql: String or binary data would be truncated.
+2023/12/08 10:45:51 [INFO] SEEDED: 'UserLoginFail' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'AgreementActivityTracker' 3 times.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'TicketCallMainTransactionHistory': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:51 [INFO] SEEDED: 'NotificationUserAgreementSubscriptions' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'Companies' 3 times.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'TimeExpHolidayMain': mssql: Cannot insert the value NULL into column 'TehPkey', table 'sei_api_test.dbo.TimeExpHolidayMain'; column does not allow nulls. INSERT fails.
+2023/12/08 10:45:51 [INFO] SEEDED: 'OcrOnCallHoursLookup' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'Applications' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'NotificationUserEventSubscriptions' 3 times.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'OffOfficeMain': mssql: String or binary data would be truncated.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'ITTicketCallMain': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:51 [INFO] SEEDED: 'AgreeStandardizationLookupCategory' 3 times.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'ApiFileStorage': mssql: String or binary data would be truncated.
+2023/12/08 10:45:51 [INFO] SEEDED: 'UserRoles' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'NotificationSubscriptionsEmailTemplates' 3 times.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'Countries': mssql: Cannot insert the value NULL into column 'CountryPkey', table 'sei_api_test.dbo.Countries'; column does not allow nulls. INSERT fails.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'NagNagiosHistory': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:51 [INFO] SEEDED: 'ECBanner' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'CompanyApplications' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'AgreeCustomerGroupMain' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'RolePrivileges' 3 times.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'agreeDurationWorkFlowApprovers': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'UsrUserMain': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'NotificationSubscriptions': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:51 [INFO] SEEDED: 'Clients' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'ScanHistory' 3 times.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'UserInfo': mssql: Cannot insert explicit value for identity column in table 'UserInfo' when IDENTITY_INSERT is set to OFF.
+2023/12/08 10:45:51 [INFO] SEEDED: 'CompanyUsers' 3 times.
+2023/12/08 10:45:51 [ERROR] SEEDING FAILED on 'NotificationLocationSubscriptions': mssql: Cannot insert the value NULL into column 'user_id', table 'sei_api_test.dbo.NotificationLocationSubscriptions'; column does not allow nulls. INSERT fails.
+2023/12/08 10:45:51 [INFO] SEEDED: 'NotificationEventDeliveryQueue' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'States' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'ExpressConnectHistory' 3 times.
+2023/12/08 10:45:51 [INFO] SEEDED: 'AgreeAgreementPartnershipMain' 3 times.
+2023/12/08 10:45:52 [INFO] SEEDED: 'TicketCallMainPaging' 3 times.
+2023/12/08 10:45:52 [ERROR] SEEDING FAILED on 'AgreeDurationWorkflowApprovalControl': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:52 [INFO] SEEDED: 'UserPermissions' 3 times.
+2023/12/08 10:45:52 [ERROR] SEEDING FAILED on 'UsrUserCompany': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:52 [INFO] SEEDED: 'AccessTokens' 3 times.
+2023/12/08 10:45:52 [INFO] SEEDED: 'AgreeStandardizationLookupType' 3 times.
+2023/12/08 10:45:52 [INFO] SEEDED: 'AgreeStandardizationLookupDetail' 3 times.
+2023/12/08 10:45:52 [INFO] SEEDED: 'OcrOnCallRotationMain' 3 times.
+2023/12/08 10:45:52 [INFO] SEEDED: 'ExpressConnectAdmin' 3 times.
+2023/12/08 10:45:52 [ERROR] SEEDING FAILED on 'CompanyPortalSettings': mssql: Cannot insert the value NULL into column 'companyID', table 'sei_api_test.dbo.CompanyPortalSettings'; column does not allow nulls. INSERT fails.
+2023/12/08 10:45:52 [INFO] SEEDED: 'NotificationEvents' 3 times.
+2023/12/08 10:45:52 [INFO] SEEDED: 'UserEmailChangeRequests' 3 times.
+2023/12/08 10:45:52 [ERROR] SEEDING FAILED on 'DmsDocumentFileMetaData': sql: Scan error on column index 0, name "": converting NULL to int is unsupported
+2023/12/08 10:45:52 [INFO] SEEDED: 'TicketActivityTracker' 3 times.
+2023/12/08 10:45:52 [INFO] SEEDED: 'TicketPageTracking' 3 times.
+2023/12/08 10:45:52 [INFO] SEEDED: 'SystemRoleCostCenters' 3 times.
+2023/12/08 10:45:52 [INFO] Seeded 55 of 96 tables on 'sei_api_test'

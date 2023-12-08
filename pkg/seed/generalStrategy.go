@@ -48,8 +48,27 @@ func CallGeneralStrategy(db *sql.DB, tableDetails TableDetails) error {
 			// Exclude primary keys. Include primary keys that are foreign keys, include primary keys without an identity
 			if (col.ReferencedTable == "" || col.ReferencedColumn == "" || col.ColumnDefault != "") && col.IsPrimaryKey {
 				continue
+			} else {
+				// If we escaped the above continue, we have a primary key without an identity
+				// Meaning we need to propogate the primary key...
+				logger.Debug(fmt.Sprintf("Primary Key '%s', Type: '%s', does not have an identity.", col.Name, col.Type))
+				if col.Type == "int" {
+					// Fetch the maximum value of the primary key from the database and increment it
+					var maxID int
+					maxQuery := fmt.Sprintf("SELECT MAX(%s) FROM %s", col.Name, tableDetails.TableName)
+					err := db.QueryRow(maxQuery).Scan(&maxID)
+					if err != nil && err != sql.ErrNoRows {
+						return err
+					}
+					values = append(values, maxID+1)
+					columnNames = append(columnNames, col.Name)
+					valueHolders = append(valueHolders, fmt.Sprintf("@p%d", paramCounter))
+					paramCounter++
+					logger.Debug(fmt.Sprintf("Found next int value: %d", maxID+1))
+					continue
+				}
+				// If for some reason the primary key is not an int ID, we'll bottom out to find a good fake data value
 			}
-
 			columnNames = append(columnNames, col.Name)
 
 			// If we are a foreign key, grab a suitable value
@@ -58,7 +77,7 @@ func CallGeneralStrategy(db *sql.DB, tableDetails TableDetails) error {
 
 				// We can assign this to default user, since the seed script should ONLY be used in local dev....
 				if col.Name == "createdBy" || col.Name == "updatedBy" {
-					values = append(values, 1) // Seeder should only ever be used locally, 1 is default admin account
+					values = append(values, 1) // Seeder should only ever be used locally, 1 is (usually) default admin account
 				} else {
 					query := fmt.Sprintf("SELECT TOP 1 %s FROM %s ORDER BY NEWID()", col.ReferencedColumn, col.ReferencedTable)
 					row := db.QueryRow(query)
