@@ -110,7 +110,7 @@ func getTables(db *sql.DB, database string) ([]TableDetails, error) {
 		JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE kcu2 
 			ON rc1.UNIQUE_CONSTRAINT_NAME = kcu2.CONSTRAINT_NAME
 	)
-	
+
 	SELECT 
 		c.TABLE_NAME,
 		c.COLUMN_NAME,
@@ -126,7 +126,10 @@ func getTables(db *sql.DB, database string) ([]TableDetails, error) {
 	FROM INFORMATION_SCHEMA.COLUMNS c
 		LEFT JOIN PrimaryKeys pk ON c.TABLE_NAME = pk.TABLE_NAME AND c.COLUMN_NAME = pk.COLUMN_NAME
 		LEFT JOIN ForeignKeys fk ON c.TABLE_NAME = fk.TABLE_NAME AND c.COLUMN_NAME = fk.COLUMN_NAME
-	WHERE c.TABLE_CATALOG = '` + database + `'
+	JOIN INFORMATION_SCHEMA.TABLES t ON c.TABLE_NAME = t.TABLE_NAME AND c.TABLE_CATALOG = t.TABLE_CATALOG
+	WHERE 
+		c.TABLE_CATALOG = '` + database + `'
+		AND t.TABLE_TYPE = 'BASE TABLE' -- Filter out views
 	`
 	rows, err := db.Query(query)
 	if err != nil {
