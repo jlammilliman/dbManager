@@ -6,21 +6,21 @@ import (
 
 	_ "github.com/denisenkom/go-mssqldb"
 	"github.com/jlammilliman/dbManager/pkg/config"
+	"github.com/jlammilliman/dbManager/pkg/logger"
 )
 
 // This list will be used to filter out any tables that we absolutely do not want to seed
 var BlockedFromSeeding []string = []string{
-	"Roles",
-	"Users",
+	"None",
 }
 
 // DRIVER LOGIC OF THE SCRIPT
 func Exec(config *config.Config, forceRefresh bool) {
-	server := config.SourceDB.Host
-	port := config.SourceDB.Port
-	database := config.SourceDB.Name
-	username := config.SourceDB.Username
-	password := config.SourceDB.Password
+	server := config.TargetDB.Host
+	port := config.TargetDB.Port
+	database := config.TargetDB.Name
+	username := config.TargetDB.Username
+	password := config.TargetDB.Password
 
 	isDBConnected := isSQLServerContainerReady(server, port, username, password)
 	if !isDBConnected {
@@ -37,20 +37,19 @@ func Exec(config *config.Config, forceRefresh bool) {
 	// Fetch tables from DB
 	tables, err := getTables(db, database)
 	if err != nil {
-		fmt.Printf("Failed to get tables: %v\n", err)
+		logger.Error(fmt.Sprintf("Failed to lookup tables. Error: %v\n", err))
 	}
 
 	// Call topography (returns a sorted priority seed list)
 	sortedTables, err := sortTables(tables)
 	if err != nil {
-		fmt.Printf("Error: %v\n", err)
+		logger.Error(fmt.Sprintf("Error: %v\n", err))
 		return
 	}
 
 	// Propogate the tables with some of that sweet juicy data
+	var seedCount = 0
 	for _, table := range sortedTables {
-		fmt.Printf("Table: %s\n", table.TableName)
-
 		// We can handle specific tablenames, types, and whatever logic we want to dynamically seed data in here.
 		// If you can manually specify a seeding strategy by adding an if(tableName == 'SomeTable')
 		// If a manual strategy is not supplied, it will follow the default
@@ -60,11 +59,13 @@ func Exec(config *config.Config, forceRefresh bool) {
 		} else {
 			err := CallGeneralStrategy(db, table) // Default to seed method
 			if err != nil {
-				fmt.Printf("Time to cry, seeding failed: %v\n", err)
+				logger.Error(fmt.Sprintf("SEEDING FAILED on '%s': %v", table.TableName, err))
+			} else {
+				seedCount++
 			}
 		}
-		fmt.Println()
 	}
+	logger.Info(fmt.Sprintf("Seeded %d of %d tables on '%s'", seedCount, len(sortedTables), database))
 }
 
 // Sanity check that a database connection exists before we try to seed it
@@ -114,6 +115,8 @@ func getTables(db *sql.DB, database string) ([]TableDetails, error) {
 		c.TABLE_NAME,
 		c.COLUMN_NAME,
 		c.DATA_TYPE,
+		COALESCE(c.CHARACTER_MAXIMUM_LENGTH, 0), -- Gets the size limit, or sets it to 0
+		c.COLUMN_DEFAULT,
 		CASE 
 			WHEN pk.COLUMN_NAME IS NOT NULL THEN 'YES'
 			ELSE 'NO'
@@ -141,8 +144,10 @@ func getTables(db *sql.DB, database string) ([]TableDetails, error) {
 			isPrimaryKeyStr  string
 			referencedTable  sql.NullString
 			referencedColumn sql.NullString
+			columnSize       int
+			columnDefault    sql.NullString
 		)
-		err := rows.Scan(&tableName, &columnName, &dataType, &isPrimaryKeyStr, &referencedTable, &referencedColumn)
+		err := rows.Scan(&tableName, &columnName, &dataType, &columnSize, &columnDefault, &isPrimaryKeyStr, &referencedTable, &referencedColumn)
 		if err != nil {
 			return nil, err
 		}
@@ -157,6 +162,13 @@ func getTables(db *sql.DB, database string) ([]TableDetails, error) {
 			IsPrimaryKey:     isPrimaryKeyStr == "YES",
 			ReferencedTable:  referencedTable.String,
 			ReferencedColumn: referencedColumn.String,
+			ColumnSize:       columnSize,
+		}
+
+		if columnDefault.Valid {
+			column.ColumnDefault = columnDefault.String
+		} else {
+			column.ColumnDefault = ""
 		}
 
 		tablesMap[tableName].Columns = append(tablesMap[tableName].Columns, column)
@@ -168,6 +180,7 @@ func getTables(db *sql.DB, database string) ([]TableDetails, error) {
 		tables = append(tables, *table)
 	}
 
+	logger.Info(fmt.Sprintf("Condensed tablesMap: %d to tables: %d", len(tablesMap), len(tables)))
 	return tables, nil
 }
 
@@ -189,7 +202,7 @@ func topologicalSort(graph map[string][]string) ([]string, error) {
 	var visit func(string) error
 	visit = func(node string) error {
 		if tempStack[node] {
-			return fmt.Errorf("cyclic dependency detected. This is indicative of bad DB design")
+			logger.Error(fmt.Sprintf("Cyclic dependency detected! Already visited: '%v'. This is indicative of bad DB design", node))
 		}
 		if !visited[node] {
 			tempStack[node] = true
@@ -230,19 +243,35 @@ func stringInSlice(a string, list []string) bool {
 func sortTables(tables []TableDetails) ([]TableDetails, error) {
 	graph := make(map[string][]string)
 
+	logger.Debug("Beggining Table sort...")
 	for _, table := range tables {
+		var addedTable = false // flag to ensure all tables make it into the graph
+		logger.Debug(fmt.Sprintf("Building columns for '%s'...", table.TableName))
 		for _, col := range table.Columns {
 			if col.ReferencedTable != "" {
+				logger.Debug(fmt.Sprintf("APPENDING:'%s':'%s' on column: '%s'", table.TableName, col.ReferencedTable, col.Name))
 				graph[table.TableName] = append(graph[table.TableName], col.ReferencedTable)
+				addedTable = true
 			}
 		}
+
+		if !addedTable {
+			logger.Debug(fmt.Sprintf("'%s' has no dependencies", table.TableName))
+			graph[table.TableName] = append(graph[table.TableName], "")
+		}
 	}
+	logger.PrintDivide(true)
+	logger.Debug(fmt.Sprintf("GRAPH GENERATED (Size: %d): \n%v", len(graph), graph))
+	logger.PrintDivide(true)
 
 	// Topological Sort
 	order, err := topologicalSort(graph)
 	if err != nil {
 		return nil, err
 	}
+
+	logger.Debug(fmt.Sprintf("SORTED GRAPH (Size: %d): \n%v", len(order), order))
+	logger.PrintDivide(true)
 
 	// Create sorted tableDetails array
 	var sortedTables []TableDetails

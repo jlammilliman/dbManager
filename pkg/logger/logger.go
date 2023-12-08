@@ -26,6 +26,13 @@ func Info(s string)    { logMsg(INFO, s) }
 func Error(s string)   { logMsg(ERROR, s) }
 func Warning(s string) { logMsg(WARNING, s) }
 func Message(s string) { logMsg(MESSAGE, s) }
+func PrintDivide(debugFlag bool) {
+	if debugFlag && viper.GetString("ENVIRONMENT") == "development" {
+		fmt.Println("============================================================================")
+	} else if !debugFlag {
+		fmt.Println("============================================================================")
+	}
+}
 
 // Enables additional logging in local/impersonation sessions
 func Debug(s string) {

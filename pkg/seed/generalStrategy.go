@@ -6,13 +6,15 @@ import (
 	"math/rand"
 	"strings"
 	"time"
+
+	"github.com/jlammilliman/dbManager/pkg/logger"
 )
 
-/**
-If we do not have a specified stratefy for seeding a table, it will default to use this strategy.
+/*
+	If we do not have a specified stratefy for seeding a table, it will default to use this strategy.
 
-We will handle column types, and insert statement building in here to seed as many times as we are called.
-When called, specify a tableDetails object, and this script will handle the rest.
+	We will handle column types, and insert statement building in here to seed as many times as we are called.
+	When called, specify a tableDetails object, and this script will handle the rest.
 */
 
 type ColumnDetails struct {
@@ -21,6 +23,8 @@ type ColumnDetails struct {
 	IsPrimaryKey     bool
 	ReferencedTable  string
 	ReferencedColumn string
+	ColumnSize       int
+	ColumnDefault    string // This helps us grab identities, or default values so we can ignore columns or override a Pkey insert
 }
 
 type TableDetails struct {
@@ -41,8 +45,8 @@ func CallGeneralStrategy(db *sql.DB, tableDetails TableDetails) error {
 		paramCounter := 1
 
 		for _, col := range tableDetails.Columns {
-			// Exclude primary keys. Include primary keys that are foreign keys
-			if ((col.ReferencedTable == "" || col.ReferencedColumn == "") && col.IsPrimaryKey) || col.Name == "createdAt" || col.Name == "updatedAt" {
+			// Exclude primary keys. Include primary keys that are foreign keys, include primary keys without an identity
+			if ((col.ReferencedTable == "" || col.ReferencedColumn == "" || col.ColumnDefault != "") && col.IsPrimaryKey) || col.Name == "createdAt" || col.Name == "updatedAt" {
 				continue
 			}
 
@@ -66,8 +70,9 @@ func CallGeneralStrategy(db *sql.DB, tableDetails TableDetails) error {
 				}
 			} else {
 				// Use type-based logic to generate some garbage
+				logger.Debug(fmt.Sprintf("Matching Column: '%s', Type: '%s'", col.Name, col.Type))
 				switch strings.ToLower(col.Type) {
-				case "varchar", "nvarchar", "text": // AKA Strings
+				case "varchar", "nvarchar", "text", "ntext": // AKA Strings
 
 					// We defined a bunch of safe for work strings to use in 'mockData.go'
 					if col.Name == "firstname" {
@@ -83,22 +88,31 @@ func CallGeneralStrategy(db *sql.DB, tableDetails TableDetails) error {
 						values = append(values, PhoneNumbers[rand.Intn(len(PhoneNumbers))])
 
 					} else {
-						values = append(values, "Default string. We can do better")
+						values = append(values, "Imagine Text here.")
 					}
 
 				case "int":
 					if col.Name == "createdBy" || col.Name == "updatedBy" {
 						values = append(values, 1) // Seeder should only ever be used locally, 1 is default admin account
 					} else {
-						values = append(values, rand.Int())
+						values = append(values, rand.Int()%8)
 					}
 
-				case "bit":
+				case "float", "decimal":
+					values = append(values, rand.Float32()) // Gets a random float between 0.0 - 1.0
+
+				case "nchar", "char", "bit":
 					values = append(values, rand.Intn(2) == 1) // Gets a random bit
+
+				case "date", "datetime", "datetime2":
+					values = append(values, time.Now())
+
+				case "money":
+					values = append(values, "100.00")
 
 				default:
 					values = append(values, rand.Int())
-					fmt.Println("UNHANDLED TYPE:", strings.ToLower(col.Type))
+					logger.Error(fmt.Sprintf("UNHANDLED TYPE: Column: '%s', Type: '%s'", col.Name, strings.ToLower(col.Type)))
 				}
 			}
 			valueHolders = append(valueHolders, fmt.Sprintf("@p%d", paramCounter))
@@ -107,7 +121,7 @@ func CallGeneralStrategy(db *sql.DB, tableDetails TableDetails) error {
 
 		// Handle the case where we filtered out all columns (SomEhOw)
 		if len(values) == 0 {
-			fmt.Printf("SKIPPED SEEDING ON '%s'. No Values were generated!\n", tableDetails.TableName)
+			logger.Info(fmt.Sprintf("SKIPPED SEEDING ON '%s'. No Values were generated!\n", tableDetails.TableName))
 		} else {
 			query := fmt.Sprintf(
 				"INSERT INTO %s (%s) VALUES (%s)",
@@ -116,13 +130,18 @@ func CallGeneralStrategy(db *sql.DB, tableDetails TableDetails) error {
 				strings.Join(valueHolders, ", "),
 			)
 
+			logger.Debug(fmt.Sprintf("Generated Query for '%s':\n  [QUERY]: %s", tableDetails.TableName, query))
+			logger.PrintDivide(true)
+			logger.Debug(fmt.Sprintf(" [VALUES]: %v", values))
+			logger.PrintDivide(true)
+
 			_, err := db.Exec(query, values...)
 			if err != nil {
 				return err
 			}
 		}
 	}
-	fmt.Printf("SEEDED: '%s'\n", tableDetails.TableName)
+	logger.Info(fmt.Sprintf("SEEDED: '%s' %d times.", tableDetails.TableName, tableDetails.NumSeeds))
 
 	return nil
 }
