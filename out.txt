@@ -8,159 +8,146 @@
 [TARGET] Name	: sei_api_test
 [TARGET] User	: sa
 ================================================
-2023/12/07 14:56:27 [MESSAGE] Requested 'Seeding'.
-2023/12/07 14:56:27 [INFO] Running Seed for 'sei_api_test'
-2023/12/07 14:56:28 [INFO] Condensed tablesMap: 139 to tables: 139
-2023/12/07 14:56:28 [ERROR] UNHANDLED TYPE: Column: 'agreementNumber', Type: 'bigint'
-2023/12/07 14:56:28 [ERROR] UNHANDLED TYPE: Column: 'customerReferenceNumber', Type: 'bigint'
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'PublicTicketFormSubmissions': mssql: String or binary data would be truncated.
-2023/12/07 14:56:28 [INFO] SEEDED: 'NotificationUserAgreementSubscriptions' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'UsrUserCompany': mssql: String or binary data would be truncated.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'TimeZoneLookup': mssql: Cannot insert the value NULL into column 'TzlPkey', table 'sei_api_test.dbo.TimeZoneLookup'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'OffOfficeMain': mssql: String or binary data would be truncated.
-2023/12/07 14:56:28 [INFO] SEEDED: 'Roles' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'TicketCallMain': mssql: The column "TcaContractCheck" cannot be modified because it is either a computed column or is the result of a UNION operator.
-2023/12/07 14:56:28 [INFO] SEEDED: 'TicketCallMainMetadata' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'TicketPartsMain' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'SerServiceCallRequest' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'EmpEmployeeInOutStatus': mssql: Update or insert of view or function 'EmpEmployeeInOutStatus' failed because it contains a derived or constant field.
-2023/12/07 14:56:28 [INFO] SEEDED: 'OcrOnCallHoursLookup' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'CompanyApplications' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'TicketDetailsForPortal': mssql: View or function 'TicketDetailsForPortal' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [INFO] SEEDED: 'UserLoginFail' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'AgreeEquipmentGeneration': mssql: String or binary data would be truncated.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'CompanyPortalSettings': mssql: Cannot insert the value NULL into column 'companyID', table 'sei_api_test.dbo.CompanyPortalSettings'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'UserPrivileges': mssql: View or function 'UserPrivileges' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'LocationPermissions': mssql: View or function 'LocationPermissions' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [INFO] SEEDED: 'ScanHistory' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'AgreeStandardizationLookupManufacturer' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'AgreeStandardizationLookupCategory' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'InventQuantities': mssql: Cannot insert the value NULL into column 'IqtPKey', table 'sei_api_test.dbo.InventQuantities'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:28 [INFO] SEEDED: 'AgreementActivityTracker' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'SerServiceCallRequestEmailLookup' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'ServiceTicketAvailabilityTimeZones': mssql: View or function 'ServiceTicketAvailabilityTimeZones' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [INFO] SEEDED: 'AgreementCriticalCareEmails' 3 times.
+2023/12/08 10:08:34 [MESSAGE] Requested 'Seeding'.
+2023/12/08 10:08:34 [INFO] Running Seed for 'sei_api_test'
+2023/12/08 10:08:34 [INFO] Condensed tablesMap: 139 to tables: 139
+2023/12/08 10:08:34 [ERROR] SEEDING FAILED on 'NagNagiosHistory': mssql: Cannot insert the value NULL into column 'NagPkey', table 'sei_api_test.dbo.NagNagiosHistory'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:34 [ERROR] SEEDING FAILED on 'TimeExpHolidayMain': mssql: Cannot insert the value NULL into column 'TehPkey', table 'sei_api_test.dbo.TimeExpHolidayMain'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:34 [ERROR] SEEDING FAILED on 'TicketCallAssignmentAvailability': mssql: View or function 'TicketCallAssignmentAvailability' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:34 [ERROR] SEEDING FAILED on 'GlobalServicesManager': mssql: View or function 'GlobalServicesManager' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:34 [ERROR] SEEDING FAILED on 'ServiceTicketEscalation': mssql: Update or insert of view or function 'ServiceTicketEscalation' failed because it contains a derived or constant field.
+2023/12/08 10:08:34 [ERROR] SEEDING FAILED on 'InventQuantities': mssql: Cannot insert the value NULL into column 'IqtPKey', table 'sei_api_test.dbo.InventQuantities'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:34 [ERROR] SEEDING FAILED on 'TimeZoneLookup': mssql: Cannot insert the value NULL into column 'TzlPkey', table 'sei_api_test.dbo.TimeZoneLookup'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'TicketCallMain': mssql: The column "TcaContractCheck" cannot be modified because it is either a computed column or is the result of a UNION operator.
+2023/12/08 10:08:35 [INFO] SEEDED: 'InventUnusedLocations' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'UserEquipment': mssql: Update or insert of view or function 'UserEquipment' failed because it contains a derived or constant field.
+2023/12/08 10:08:35 [INFO] SEEDED: 'SystemRoleUsers' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'TicketCallMainMetadata' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'Roles' 3 times.
 TODO: Implement user 
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'EmpEmployeeMain': mssql: The column "EmpAnniversary" cannot be modified because it is either a computed column or is the result of a UNION operator.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'UserVerification': mssql: Cannot insert duplicate key row in object 'dbo.UserVerification' with unique index 'UX_UserVerification_userID'. The duplicate key value is (1879).
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'agreeDurationWorkFlowApprovers': mssql: Cannot insert explicit value for identity column in table 'agreeDurationWorkFlowApprovers' when IDENTITY_INSERT is set to OFF.
-2023/12/07 14:56:28 [ERROR] UNHANDLED TYPE: Column: 'LogId', Type: 'bigint'
-2023/12/07 14:56:28 [ERROR] UNHANDLED TYPE: Column: 'LogId', Type: 'bigint'
-2023/12/07 14:56:28 [ERROR] UNHANDLED TYPE: Column: 'LogId', Type: 'bigint'
-2023/12/07 14:56:28 [INFO] SEEDED: 'ExpressConnectAdmin' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'PrivacyPolicy' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'vw_EmpEmployeeMain': mssql: View or function 'vw_EmpEmployeeMain' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'AgreeAgreementMain': mssql: String or binary data would be truncated.
-2023/12/07 14:56:28 [INFO] SEEDED: 'AgreeLocationMain' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'AgreeEquipmentMain': mssql: The column "AeqPriceDifference" cannot be modified because it is either a computed column or is the result of a UNION operator.
-2023/12/07 14:56:28 [INFO] SEEDED: 'AgreeEquipmentDetailMain' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'EquipmentExcel': mssql: View or function 'EquipmentExcel' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'SerserviceCallNotes': mssql: Cannot insert explicit value for identity column in table 'SerserviceCallNotes' when IDENTITY_INSERT is set to OFF.
-2023/12/07 14:56:28 [INFO] SEEDED: 'RegionMain' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'AgreeDurationWorkflowApproval': mssql: Cannot insert explicit value for identity column in table 'AgreeDurationWorkflowApproval' when IDENTITY_INSERT is set to OFF.
-2023/12/07 14:56:28 [INFO] SEEDED: 'Applications' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'AddEquipmentRequestInfo' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'LocationAuditEquipment' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'NotificationUserEventSubscriptions' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'LocationEngineerTimeZones': mssql: View or function 'LocationEngineerTimeZones' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'UserEmailChangeRequests': mssql: Violation of UNIQUE KEY constraint 'UQ__UserEmai__CA90DA7A4714F8BA'. Cannot insert duplicate key in object 'dbo.UserEmailChangeRequests'. The duplicate key value is (Imagine Text here.).
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'UserPermissions': mssql: Violation of UNIQUE KEY constraint 'UC_UserPermissions'. Cannot insert duplicate key in object 'dbo.UserPermissions'. The duplicate key value is (7, Imagine Text here., 5).
-2023/12/07 14:56:28 [INFO] SEEDED: 'ImpersonationActivities' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'LocationEngineerInfo': mssql: View or function 'LocationEngineerInfo' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'ITTicketCallMain': mssql: Cannot insert the value NULL into column 'IttPKey', table 'sei_api_test.dbo.ITTicketCallMain'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'LocationOnCall': mssql: View or function 'LocationOnCall' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'NotificationLocationSubscriptions': mssql: Cannot insert the value NULL into column 'user_id', table 'sei_api_test.dbo.NotificationLocationSubscriptions'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'LocationSupportingOfficeOnCall': mssql: View or function 'LocationSupportingOfficeOnCall' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [INFO] SEEDED: 'ECBanner' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'AgreeAgreementPartnershipDetail' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'UserTicketInformation': mssql: View or function 'UserTicketInformation' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'TicketTracker': mssql: Update or insert of view or function 'TicketTracker' failed because it contains a derived or constant field.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'TicketAttachments': mssql: Update or insert of view or function 'TicketAttachments' failed because it contains a derived or constant field.
-2023/12/07 14:56:28 [INFO] SEEDED: 'UserActivity' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'ActivityTypes' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'AgreementSalesPerson': mssql: View or function 'AgreementSalesPerson' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [INFO] SEEDED: 'InventDOALookupReason' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'RolePrivileges' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'AgreeAgreementPartnershipMain' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'ExpressConnectHistory' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'TicketCallMainTransactionHistory': mssql: String or binary data would be truncated.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'TimeExpHolidayMain': mssql: Cannot insert the value NULL into column 'TehPkey', table 'sei_api_test.dbo.TimeExpHolidayMain'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:28 [INFO] SEEDED: 'TicketCallMainPaging' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'GlobalServicesDirector': mssql: View or function 'GlobalServicesDirector' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [INFO] SEEDED: 'SystemRoleCostCenters' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'ForForumNotes' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'EmpEmployeeOutOfOffice': mssql: Cannot insert the value NULL into column 'EooPKey', table 'sei_api_test.dbo.EmpEmployeeOutOfOffice'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'SLAResponseTime': mssql: View or function 'SLAResponseTime' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [INFO] SEEDED: 'CelPhoneList' 3 times.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'UserInformation': mssql: View or function 'UserInformation' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'UserInfo': mssql: Cannot insert explicit value for identity column in table 'UserInfo' when IDENTITY_INSERT is set to OFF.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'UsrUserCompanyAgreementLink': mssql: Cannot insert the value NULL into column 'CalPKey', table 'sei_api_test.dbo.UsrUserCompanyAgreementLink'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'TicketCallAssignmentAvailability': mssql: View or function 'TicketCallAssignmentAvailability' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'vw_SerServiceCallTicketAvailability': mssql: Update or insert of view or function 'vw_SerServiceCallTicketAvailability' failed because it contains a derived or constant field.
-2023/12/07 14:56:28 [INFO] SEEDED: 'NotificationEvents' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'AgreeCustomerGroupMain' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'ApiFileStorage' 3 times.
-2023/12/07 14:56:28 [INFO] SEEDED: 'SystemRoleUsers' 3 times.
-2023/12/07 14:56:28 [ERROR] UNHANDLED TYPE: Column: 'DfiFileSize', Type: 'bigint'
-2023/12/07 14:56:28 [ERROR] SEEDING FAILED on 'DmsDocumentFile': mssql: Cannot insert the value NULL into column 'DfiPKey', table 'sei_api_test.dbo.DmsDocumentFile'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:29 [INFO] SEEDED: 'States' 3 times.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'LeftMenuAgreementsView': mssql: Update or insert of view or function 'LeftMenuAgreementsView' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'ExpressConnectUsers': mssql: Update or insert of view or function 'ExpressConnectUsers' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [INFO] SEEDED: 'CompanyUsers' 3 times.
-2023/12/07 14:56:29 [INFO] SEEDED: 'UserRoles' 3 times.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'DmsDocumentFileMetaData': mssql: Cannot insert the value NULL into column 'DfmPKey', table 'sei_api_test.dbo.DmsDocumentFileMetaData'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:29 [INFO] SEEDED: 'Privileges' 3 times.
-2023/12/07 14:56:29 [INFO] SEEDED: 'CompanyAgreements' 3 times.
-2023/12/07 14:56:29 [INFO] SEEDED: 'TicketActivityTracker' 3 times.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'EntitlementEngineersAvailable': mssql: View or function 'EntitlementEngineersAvailable' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:29 [INFO] SEEDED: 'UserLoginLockout' 3 times.
-2023/12/07 14:56:29 [INFO] SEEDED: 'InventUnusedLocations' 3 times.
-2023/12/07 14:56:29 [ERROR] UNHANDLED TYPE: Column: 'expires', Type: 'datetimeoffset'
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'Sessions': mssql: Operand type clash: bigint is incompatible with datetimeoffset
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'ImpersonationSessions': mssql: Cannot insert the value NULL into column 'sessionID', table 'sei_api_test.dbo.ImpersonationSessions'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:29 [INFO] SEEDED: 'NotificationSubscriptionsEmailTemplates' 3 times.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'NagNagiosHistory': mssql: Cannot insert the value NULL into column 'NagPkey', table 'sei_api_test.dbo.NagNagiosHistory'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'vw_RandomString': mssql: Update or insert of view or function 'vw_RandomString' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'NotificationSubscriptions': mssql: String or binary data would be truncated.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'AgreeDurationWorkflowApprovalControl': mssql: Cannot insert explicit value for identity column in table 'AgreeDurationWorkflowApprovalControl' when IDENTITY_INSERT is set to OFF.
-2023/12/07 14:56:29 [INFO] SEEDED: 'Demos' 3 times.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'TicketDetails24MonthHistory': mssql: View or function 'TicketDetails24MonthHistory' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'AgreementTracker': mssql: View or function 'AgreementTracker' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'GlobalServiceOffice': mssql: Update or insert of view or function 'GlobalServiceOffice' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'LocationEquipment': mssql: View or function 'LocationEquipment' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'OEM': mssql: Update or insert of view or function 'OEM' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [ERROR] UNHANDLED TYPE: Column: 'NOTEINDX', Type: 'numeric'
-2023/12/07 14:56:29 [ERROR] UNHANDLED TYPE: Column: 'INCLDDINPLNNNG', Type: 'tinyint'
-2023/12/07 14:56:29 [ERROR] UNHANDLED TYPE: Column: 'WMSINT', Type: 'tinyint'
-2023/12/07 14:56:29 [ERROR] UNHANDLED TYPE: Column: 'PICKTICKETSITEOPT', Type: 'smallint'
-2023/12/07 14:56:29 [ERROR] UNHANDLED TYPE: Column: 'BINBREAK', Type: 'smallint'
-2023/12/07 14:56:29 [ERROR] UNHANDLED TYPE: Column: 'INACTIVE', Type: 'tinyint'
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'IV40700': mssql: Arithmetic overflow error converting bigint to data type numeric.
-2023/12/07 14:56:29 [INFO] SEEDED: 'UserNotifications' 3 times.
-2023/12/07 14:56:29 [INFO] SEEDED: 'TicketPageTracking' 3 times.
-2023/12/07 14:56:29 [INFO] SEEDED: 'AgreeStandardizationLookupType' 3 times.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'TicketDetails': mssql: Update or insert of view or function 'TicketDetails' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'ExpressConnectUsersDataZonesView': mssql: View or function 'ExpressConnectUsersDataZonesView' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'EquipmentManufacturer': mssql: Update or insert of view or function 'EquipmentManufacturer' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'EquipmentCacheView': mssql: Update or insert of view or function 'EquipmentCacheView' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [INFO] SEEDED: 'Companies' 3 times.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'ServiceTicketEscalation': mssql: Update or insert of view or function 'ServiceTicketEscalation' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'UserEquipment': mssql: Update or insert of view or function 'UserEquipment' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'UserTicketCount': mssql: View or function 'UserTicketCount' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'EquipmentCache': mssql: Update or insert of view or function 'EquipmentCache' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [INFO] SEEDED: 'UserEmployees' 3 times.
-2023/12/07 14:56:29 [INFO] SEEDED: 'AgreeStandardizationLookupDetail' 3 times.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'GlobalServicesOnCall': mssql: View or function 'GlobalServicesOnCall' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:29 [INFO] SEEDED: 'Clients' 3 times.
-2023/12/07 14:56:29 [INFO] SEEDED: 'NotificationEventDeliveryQueue' 3 times.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'vExpressConnectUsers': mssql: Update or insert of view or function 'vExpressConnectUsers' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'LeftMenuLocationsView': mssql: Update or insert of view or function 'LeftMenuLocationsView' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [INFO] SEEDED: 'UserLogin' 3 times.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'OfficeStockLocations': mssql: Update or insert of view or function 'OfficeStockLocations' failed because it contains a derived or constant field.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'UsrUserMain': mssql: String or binary data would be truncated.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'AgreementPermissions': mssql: View or function 'AgreementPermissions' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:29 [INFO] SEEDED: 'OcrOnCallRotationMain' 3 times.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'GlobalServicesManager': mssql: View or function 'GlobalServicesManager' is not updatable because the modification affects multiple base tables.
-2023/12/07 14:56:29 [INFO] SEEDED: 'AccessTokens' 3 times.
-2023/12/07 14:56:29 [ERROR] SEEDING FAILED on 'Countries': mssql: Cannot insert the value NULL into column 'CountryPkey', table 'sei_api_test.dbo.Countries'; column does not allow nulls. INSERT fails.
-2023/12/07 14:56:29 [INFO] Seeded 61 of 139 tables on 'sei_api_test'
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'EmpEmployeeMain': mssql: The column "EmpAnniversary" cannot be modified because it is either a computed column or is the result of a UNION operator.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'UserVerification': mssql: Cannot insert duplicate key row in object 'dbo.UserVerification' with unique index 'UX_UserVerification_userID'. The duplicate key value is (1877).
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'EquipmentCacheView': mssql: Update or insert of view or function 'EquipmentCacheView' failed because it contains a derived or constant field.
+2023/12/08 10:08:35 [INFO] SEEDED: 'CompanyApplications' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'GlobalServicesDirector': mssql: View or function 'GlobalServicesDirector' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'DmsDocumentFileMetaData': mssql: Cannot insert the value NULL into column 'DfmPKey', table 'sei_api_test.dbo.DmsDocumentFileMetaData'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'EquipmentCache': mssql: Update or insert of view or function 'EquipmentCache' failed because it contains a derived or constant field.
+2023/12/08 10:08:35 [INFO] SEEDED: 'SystemRoleCostCenters' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'ExpressConnectUsersDataZonesView': mssql: View or function 'ExpressConnectUsersDataZonesView' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'TicketCallMainTransactionHistory': mssql: String or binary data would be truncated.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'vw_SerServiceCallTicketAvailability': mssql: Update or insert of view or function 'vw_SerServiceCallTicketAvailability' failed because it contains a derived or constant field.
+2023/12/08 10:08:35 [INFO] SEEDED: 'TicketActivityTracker' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'UserEmailChangeRequests' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'ExpressConnectHistory' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'Countries': mssql: Cannot insert the value NULL into column 'CountryPkey', table 'sei_api_test.dbo.Countries'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:35 [INFO] SEEDED: 'OcrOnCallHoursLookup' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'LocationAuditEquipment' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'PrivacyPolicy' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'OcrOnCallRotationMain' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'ApiFileStorage': mssql: String or binary data would be truncated.
+2023/12/08 10:08:35 [INFO] SEEDED: 'NotificationUserEventSubscriptions' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'LeftMenuLocationsView': mssql: Update or insert of view or function 'LeftMenuLocationsView' failed because it contains a derived or constant field.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'EmpEmployeeOutOfOffice': mssql: Cannot insert the value NULL into column 'EooPKey', table 'sei_api_test.dbo.EmpEmployeeOutOfOffice'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:35 [INFO] SEEDED: 'Demos' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'CompanyAgreements' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'UsrUserMain': mssql: String or binary data would be truncated.
+2023/12/08 10:08:35 [INFO] SEEDED: 'States' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'TicketDetails': mssql: Update or insert of view or function 'TicketDetails' failed because it contains a derived or constant field.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'ITTicketCallMain': mssql: Cannot insert the value NULL into column 'IttPKey', table 'sei_api_test.dbo.ITTicketCallMain'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'AgreeEquipmentGeneration': mssql: String or binary data would be truncated.
+2023/12/08 10:08:35 [INFO] SEEDED: 'ActivityTypes' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'LocationPermissions': mssql: View or function 'LocationPermissions' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:35 [INFO] SEEDED: 'ECBanner' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'TicketDetails24MonthHistory': mssql: View or function 'TicketDetails24MonthHistory' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'OEM': mssql: Update or insert of view or function 'OEM' failed because it contains a derived or constant field.
+2023/12/08 10:08:35 [INFO] SEEDED: 'AgreementCriticalCareEmails' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'IV40700': mssql: String or binary data would be truncated.
+2023/12/08 10:08:35 [INFO] SEEDED: 'UserNotifications' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'UserInformation': mssql: View or function 'UserInformation' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:35 [INFO] SEEDED: 'NotificationEventDeliveryQueue' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'ImpersonationSessions': mssql: Cannot insert the value NULL into column 'sessionID', table 'sei_api_test.dbo.ImpersonationSessions'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:35 [INFO] SEEDED: 'AgreeAgreementPartnershipMain' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'EntitlementEngineersAvailable': mssql: View or function 'EntitlementEngineersAvailable' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'AgreeDurationWorkflowApprovalControl': mssql: Cannot insert explicit value for identity column in table 'AgreeDurationWorkflowApprovalControl' when IDENTITY_INSERT is set to OFF.
+2023/12/08 10:08:35 [INFO] SEEDED: 'AgreeStandardizationLookupManufacturer' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'AgreeStandardizationLookupCategory' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'AgreeStandardizationLookupType' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'AgreeStandardizationLookupDetail' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'NotificationLocationSubscriptions': mssql: Cannot insert the value NULL into column 'user_id', table 'sei_api_test.dbo.NotificationLocationSubscriptions'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'UsrUserCompanyAgreementLink': mssql: Cannot insert the value NULL into column 'CalPKey', table 'sei_api_test.dbo.UsrUserCompanyAgreementLink'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:35 [INFO] SEEDED: 'RegionMain' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'EquipmentManufacturer': mssql: Update or insert of view or function 'EquipmentManufacturer' failed because it contains a derived or constant field.
+2023/12/08 10:08:35 [INFO] SEEDED: 'NotificationEvents' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'RolePrivileges' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'UserLoginLockout' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'UserEmployees' 3 times.
+2023/12/08 10:08:35 [INFO] SEEDED: 'Companies' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'ExpressConnectUsers': mssql: Update or insert of view or function 'ExpressConnectUsers' failed because it contains a derived or constant field.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'EquipmentExcel': mssql: View or function 'EquipmentExcel' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:35 [INFO] SEEDED: 'TicketPageTracking' 3 times.
+2023/12/08 10:08:35 [ERROR] SEEDING FAILED on 'OffOfficeMain': mssql: String or binary data would be truncated.
+2023/12/08 10:08:36 [INFO] SEEDED: 'UserPermissions' 3 times.
+2023/12/08 10:08:36 [INFO] SEEDED: 'NotificationSubscriptionsEmailTemplates' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'vw_EmpEmployeeMain': mssql: View or function 'vw_EmpEmployeeMain' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'ImpersonationActivities': mssql: String or binary data would be truncated.
+2023/12/08 10:08:36 [INFO] SEEDED: 'AgreementActivityTracker' 3 times.
+2023/12/08 10:08:36 [INFO] SEEDED: 'Privileges' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'UserTicketInformation': mssql: View or function 'UserTicketInformation' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'agreeDurationWorkFlowApprovers': mssql: Cannot insert explicit value for identity column in table 'agreeDurationWorkFlowApprovers' when IDENTITY_INSERT is set to OFF.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'EmpEmployeeInOutStatus': mssql: Update or insert of view or function 'EmpEmployeeInOutStatus' failed because it contains a derived or constant field.
+2023/12/08 10:08:36 [INFO] SEEDED: 'CelPhoneList' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'LocationEngineerTimeZones': mssql: View or function 'LocationEngineerTimeZones' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'AgreementTracker': mssql: View or function 'AgreementTracker' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [INFO] SEEDED: 'UserActivity' 3 times.
+2023/12/08 10:08:36 [INFO] SEEDED: 'ForForumNotes' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'UsrUserCompany': mssql: String or binary data would be truncated.
+2023/12/08 10:08:36 [INFO] SEEDED: 'CompanyUsers' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'LocationEquipment': mssql: View or function 'LocationEquipment' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [INFO] SEEDED: 'ExpressConnectAdmin' 3 times.
+2023/12/08 10:08:36 [INFO] SEEDED: 'Applications' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'LocationOnCall': mssql: View or function 'LocationOnCall' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'UserTicketCount': mssql: View or function 'UserTicketCount' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'AgreeAgreementMain': mssql: String or binary data would be truncated.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'AgreeLocationMain': mssql: String or binary data would be truncated.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'AgreeEquipmentMain': mssql: The column "AeqPriceDifference" cannot be modified because it is either a computed column or is the result of a UNION operator.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'LocationSupportingOfficeOnCall': mssql: View or function 'LocationSupportingOfficeOnCall' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [INFO] SEEDED: 'NotificationUserAgreementSubscriptions' 3 times.
+2023/12/08 10:08:36 [INFO] SEEDED: 'SerServiceCallRequest' 3 times.
+2023/12/08 10:08:36 [INFO] SEEDED: 'UserRoles' 3 times.
+2023/12/08 10:08:36 [INFO] SEEDED: 'ScanHistory' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'LeftMenuAgreementsView': mssql: Update or insert of view or function 'LeftMenuAgreementsView' failed because it contains a derived or constant field.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'UserInfo': mssql: Cannot insert explicit value for identity column in table 'UserInfo' when IDENTITY_INSERT is set to OFF.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'UserPrivileges': mssql: View or function 'UserPrivileges' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'DmsDocumentFile': mssql: Cannot insert the value NULL into column 'DfiPKey', table 'sei_api_test.dbo.DmsDocumentFile'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'NotificationSubscriptions': mssql: String or binary data would be truncated.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'vw_RandomString': mssql: Update or insert of view or function 'vw_RandomString' failed because it contains a derived or constant field.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'AgreementSalesPerson': mssql: View or function 'AgreementSalesPerson' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'OfficeStockLocations': mssql: Update or insert of view or function 'OfficeStockLocations' failed because it contains a derived or constant field.
+2023/12/08 10:08:36 [INFO] SEEDED: 'TicketPartsMain' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'LocationEngineerInfo': mssql: View or function 'LocationEngineerInfo' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'vExpressConnectUsers': mssql: Update or insert of view or function 'vExpressConnectUsers' failed because it contains a derived or constant field.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'TicketDetailsForPortal': mssql: View or function 'TicketDetailsForPortal' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [INFO] SEEDED: 'TicketCallMainPaging' 3 times.
+2023/12/08 10:08:36 [INFO] SEEDED: 'AccessTokens' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'GlobalServiceOffice': mssql: Update or insert of view or function 'GlobalServiceOffice' failed because it contains a derived or constant field.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'AgreementPermissions': mssql: View or function 'AgreementPermissions' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'PublicTicketFormSubmissions': mssql: String or binary data would be truncated.
+2023/12/08 10:08:36 [INFO] SEEDED: 'SerServiceCallRequestEmailLookup' 3 times.
+2023/12/08 10:08:36 [INFO] SEEDED: 'UserLoginFail' 3 times.
+2023/12/08 10:08:36 [INFO] SEEDED: 'AgreeEquipmentDetailMain' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'TicketAttachments': mssql: Update or insert of view or function 'TicketAttachments' failed because it contains a derived or constant field.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'Sessions': mssql: Cannot insert the value NULL into column 'updatedAt', table 'sei_api_test.dbo.Sessions'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'AgreeDurationWorkflowApproval': mssql: Cannot insert explicit value for identity column in table 'AgreeDurationWorkflowApproval' when IDENTITY_INSERT is set to OFF.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'TicketTracker': mssql: Update or insert of view or function 'TicketTracker' failed because it contains a derived or constant field.
+2023/12/08 10:08:36 [INFO] SEEDED: 'InventDOALookupReason' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'ServiceTicketAvailabilityTimeZones': mssql: View or function 'ServiceTicketAvailabilityTimeZones' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [INFO] SEEDED: 'AgreeAgreementPartnershipDetail' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'SLAResponseTime': mssql: View or function 'SLAResponseTime' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'SerserviceCallNotes': mssql: Cannot insert explicit value for identity column in table 'SerserviceCallNotes' when IDENTITY_INSERT is set to OFF.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'GlobalServicesOnCall': mssql: View or function 'GlobalServicesOnCall' is not updatable because the modification affects multiple base tables.
+2023/12/08 10:08:36 [INFO] SEEDED: 'UserLogin' 3 times.
+2023/12/08 10:08:36 [INFO] SEEDED: 'Clients' 3 times.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'AddEquipmentRequestInfo': mssql: String or binary data would be truncated.
+2023/12/08 10:08:36 [ERROR] SEEDING FAILED on 'CompanyPortalSettings': mssql: Cannot insert the value NULL into column 'companyID', table 'sei_api_test.dbo.CompanyPortalSettings'; column does not allow nulls. INSERT fails.
+2023/12/08 10:08:36 [INFO] SEEDED: 'AgreeCustomerGroupMain' 3 times.
+2023/12/08 10:08:36 [INFO] Seeded 59 of 139 tables on 'sei_api_test'

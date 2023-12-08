@@ -3,10 +3,10 @@ package seed
 import (
 	"database/sql"
 	"fmt"
-	"math/rand"
 	"strings"
 	"time"
 
+	"github.com/brianvoe/gofakeit/v6"
 	"github.com/jlammilliman/dbManager/pkg/logger"
 )
 
@@ -34,7 +34,7 @@ type TableDetails struct {
 }
 
 func CallGeneralStrategy(db *sql.DB, tableDetails TableDetails) error {
-	rand.Seed(time.Now().UnixNano()) // Seed the random number generator (Ignoring deprecation warning because it literally doesn't matter, this is dummy data)
+	gofakeit.Seed(0) // Initialize gofakeit
 
 	// Not the most efficient way, but this is a local database seed script sooooo.....
 	for i := 0; i < tableDetails.NumSeeds; i++ {
@@ -72,48 +72,84 @@ func CallGeneralStrategy(db *sql.DB, tableDetails TableDetails) error {
 				// Use type-based logic to generate some garbage
 				logger.Debug(fmt.Sprintf("Matching Column: '%s', Type: '%s'", col.Name, col.Type))
 				switch strings.ToLower(col.Type) {
-				case "varchar", "nvarchar", "text", "ntext": // AKA Strings
+				case "bigint", "int", "smallint", "tinyint":
+					values = append(values, gofakeit.Number(0, 10000))
 
-					// We defined a bunch of safe for work strings to use in 'mockData.go'
-					if col.Name == "firstname" {
-						values = append(values, FirstNames[rand.Intn(len(FirstNames))])
+				case "bit":
+					values = append(values, gofakeit.Bool())
 
-					} else if col.Name == "lastname" {
-						values = append(values, LastNames[rand.Intn(len(LastNames))])
+				case "decimal", "numeric", "money", "smallmoney":
+					values = append(values, gofakeit.Float32Range(0, 10000))
 
-					} else if col.Name == "email" {
-						values = append(values, Emails[rand.Intn(len(Emails))])
+				case "float":
+					values = append(values, gofakeit.Float64())
 
-					} else if col.Name == "phoneNumber" {
-						values = append(values, PhoneNumbers[rand.Intn(len(PhoneNumbers))])
+				case "real":
+					values = append(values, gofakeit.Float32())
 
-					} else {
-						values = append(values, "Imagine Text here.")
-					}
+				case "date":
+					values = append(values, gofakeit.Date())
 
-				case "int":
-					if col.Name == "createdBy" || col.Name == "updatedBy" {
-						values = append(values, 1) // Seeder should only ever be used locally, 1 is default admin account
-					} else {
-						values = append(values, rand.Int()%8)
-					}
+				case "datetime", "datetime2", "smalldatetime":
+					values = append(values, gofakeit.Date())
 
-				case "float", "decimal":
-					values = append(values, rand.Float32()) // Gets a random float between 0.0 - 1.0
+				case "datetimeoffset":
+					values = append(values, gofakeit.Date().Format(time.RFC3339))
 
-				case "nchar", "char", "bit":
-					values = append(values, rand.Intn(2) == 1) // Gets a random bit
+				case "time":
+					values = append(values, gofakeit.Date().Format("15:04:05"))
 
-				case "date", "datetime", "datetime2":
-					values = append(values, time.Now())
+				case "char", "varchar", "text":
+					values = append(values, gofakeit.Sentence(5))
 
-				case "money":
-					values = append(values, "100.00")
+				case "nchar", "nvarchar", "ntext":
+					values = append(values, gofakeit.Sentence(5))
+
+				case "binary", "varbinary":
+					values = append(values, gofakeit.City()) // Just dump something in there
+
+				case "image":
+					values = append(values, gofakeit.ImageURL(100, 100))
+
+				case "cursor":
+					// Cursors are not typically used in data seeding
+					continue
+
+				case "hierarchyid":
+					values = append(values, fmt.Sprintf("/%d/", gofakeit.Number(1, 100)))
+
+				case "sql_variant":
+					values = append(values, gofakeit.Word())
+
+				case "table":
+					// This is almost never used, skipping
+					continue
+
+				case "timestamp":
+					values = append(values, gofakeit.Date())
+
+				case "uniqueidentifier":
+					values = append(values, gofakeit.UUID())
+
+				case "xml":
+					values = append(values, fmt.Sprintf("<root><value>%s</value></root>", gofakeit.Word()))
+
+				case "json":
+					values = append(values, fmt.Sprintf("{\"key\": \"%s\"}", gofakeit.Word()))
+
+				case "geometry", "geography":
+					// Generate a random point for geometry/geography types
+					values = append(values, fmt.Sprintf("POINT(%f %f)", gofakeit.Longitude(), gofakeit.Latitude()))
+
+				// Specialized String Types
+				case "sysname":
+					values = append(values, gofakeit.Username())
 
 				default:
-					values = append(values, rand.Int())
 					logger.Error(fmt.Sprintf("UNHANDLED TYPE: Column: '%s', Type: '%s'", col.Name, strings.ToLower(col.Type)))
+					values = append(values, gofakeit.Word()) // Default case
 				}
+
 			}
 			valueHolders = append(valueHolders, fmt.Sprintf("@p%d", paramCounter))
 			paramCounter++

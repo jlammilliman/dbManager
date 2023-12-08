@@ -3,6 +3,7 @@ module github.com/jlammilliman/dbManager
 go 1.20
 
 require (
+	github.com/brianvoe/gofakeit/v6 v6.26.0
 	github.com/denisenkom/go-mssqldb v0.12.3
 	github.com/spf13/viper v1.18.0
 )
